@@ -153,8 +153,8 @@ selector.addEventListener('click', function(){
 
 dropDown.addEventListener('click', function(e) {
     const target = e.target
-    
-    if (e.target.className === 'clipboard') {
+
+    if (e.target.className.includes('select-items')) {
         const currentHexCode = e.target.getAttribute("data-NewColorHex")
         const id = target.getAttribute('data-id')
         handleSelectorClick(id)
