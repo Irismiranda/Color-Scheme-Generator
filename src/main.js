@@ -1,26 +1,34 @@
 const selector = document.getElementById('selector')
 const dropDown = document.getElementById('drop-down')
 const colorPicker = document.getElementById('color-picker')
+const mainDiv = document.getElementById('main-div')
 const getRandomColorSchemeBtn = document.getElementById('get-random-color-scheme')
 const arrowIcon = document.getElementById('arrow-icon')
 const colorCountInput = document.getElementById('color-count-input')
 const countDownArrow = document.getElementById('count-down-arrow')
 const countUpArrow = document.getElementById('count-up-arrow')
 const colorCountText = document.getElementById('color-count-text')
-colorCountInput.disabled
+
+colorCountInput.disabled = false
 let colorCount = 5
 
 const paletteModes = [
-    {name: "Monochrome", isSelected: true, id: 0}, {name: "Monochrome-dark", isSelected: false, id: 1},  {name: "Monochrome-light", isSelected: false, id: 2}, {name: "Analogic", isSelected: false, id: 3}, {name: "Complement", isSelected: false, id: 4} , {name: "Analogic-complement", isSelected: false,id: 5}, {name: "Triad", isSelected: false, id: 6} 
+    { name: "Monochrome", isSelected: true, id: 0 },
+    { name: "Monochrome-dark", isSelected: false, id: 1 },
+    { name: "Monochrome-light", isSelected: false, id: 2 },
+    { name: "Analogic", isSelected: false, id: 3 },
+    { name: "Complement", isSelected: false, id: 4 },
+    { name: "Analogic-complement", isSelected: false, id: 5 },
+    { name: "Triad", isSelected: false, id: 6 },
 ]
 
 function getSelectedPaletteMode(){
    return paletteModes.find(mode => mode.isSelected === true).name 
 }
 
-function handleSelectorClick(id){
-    const selectedModeIndex = paletteModes.findIndex(mode => mode.id === id)
-    const currentMode = paletteModes[selectedModeIndex]
+function handleSelectorClick(index){
+    const currentMode = paletteModes[index]
+
     paletteModes.forEach(mode => mode.isSelected = false)
     currentMode.isSelected = true
     toggleDropDown()
@@ -31,11 +39,12 @@ function handleSelectorClick(id){
 function renderMenu(){  
     let selectorHtml = ``
     let classes = ""
+
     paletteModes.forEach(mode => {
-        let title = mode.name.replace("-", " ");
+        let title = mode.name.replace("-", " ")
         mode.isSelected ? classes = "select-items padding-bottom bold" : classes = "select-items padding-bottom"
         selectorHtml += 
-            `<h1 class='${classes}' onclick='handleSelectorClick(${mode.id})'> ${title} </h1>`
+            `<h1 class='${classes}' data-id='${mode.id}'> ${title} </h1>`
     })
     dropDown.innerHTML = selectorHtml
     document.getElementById('selected-item').innerHTML = `${getSelectedPaletteMode()}`
@@ -69,11 +78,12 @@ function fetchColorPalette(selectedColor, selectedPaletteMode, colorCount){
                                 <p> ${hexValue} </p>
                                <div class='flex center'> 
                                     <p class='bold'> ${colorName} </p> 
-                                    <?xml version="1.0" encoding="utf-8"?>
-                                    <svg  class='clipboard' data-NewColorHex="${hexValue}" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 115.77 122.88" style="enable-background:new 0 0 115.77 122.88" xml:space="preserve">
-                                    <style type="text/css">.st0{fill-rule:evenodd;clip-rule:evenodd;}</style><g><path class="st0" d="M89.62,13.96v7.73h12.19h0.01v0.02c3.85,0.01,7.34,1.57,9.86,4.1c2.5,2.51,4.06,5.98,4.07,9.82h0.02v0.02 v73.27v0.01h-0.02c-0.01,3.84-1.57,7.33-4.1,9.86c-2.51,2.5-5.98,4.06-9.82,4.07v0.02h-0.02h-61.7H40.1v-0.02 c-3.84-0.01-7.34-1.57-9.86-4.1c-2.5-2.51-4.06-5.98-4.07-9.82h-0.02v-0.02V92.51H13.96h-0.01v-0.02c-3.84-0.01-7.34-1.57-9.86-4.1 c-2.5-2.51-4.06-5.98-4.07-9.82H0v-0.02V13.96v-0.01h0.02c0.01-3.85,1.58-7.34,4.1-9.86c2.51-2.5,5.98-4.06,9.82-4.07V0h0.02h61.7 h0.01v0.02c3.85,0.01,7.34,1.57,9.86,4.1c2.5,2.51,4.06,5.98,4.07,9.82h0.02V13.96L89.62,13.96z M79.04,21.69v-7.73v-0.02h0.02 c0-0.91-0.39-1.75-1.01-2.37c-0.61-0.61-1.46-1-2.37-1v0.02h-0.01h-61.7h-0.02v-0.02c-0.91,0-1.75,0.39-2.37,1.01 c-0.61,0.61-1,1.46-1,2.37h0.02v0.01v64.59v0.02h-0.02c0,0.91,0.39,1.75,1.01,2.37c0.61,0.61,1.46,1,2.37,1v-0.02h0.01h12.19V35.65 v-0.01h0.02c0.01-3.85,1.58-7.34,4.1-9.86c2.51-2.5,5.98-4.06,9.82-4.07v-0.02h0.02H79.04L79.04,21.69z M105.18,108.92V35.65v-0.02 h0.02c0-0.91-0.39-1.75-1.01-2.37c-0.61-0.61-1.46-1-2.37-1v0.02h-0.01h-61.7h-0.02v-0.02c-0.91,0-1.75,0.39-2.37,1.01 c-0.61,0.61-1,1.46-1,2.37h0.02v0.01v73.27v0.02h-0.02c0,0.91,0.39,1.75,1.01,2.37c0.61,0.61,1.46,1,2.37,1v-0.02h0.01h61.7h0.02 v0.02c0.91,0,1.75-0.39,2.37-1.01c0.61-0.61,1-1.46,1-2.37h-0.02V108.92L105.18,108.92z"/>
-                                    </g>
-                                    </svg>
+                                    <div class='clipboard' data-NewColorHex="${hexValue}">
+                                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 115.77 122.88" style="enable-background:new 0 0 115.77 122.88" xml:space="preserve">
+                                        <style type="text/css">.st0{fill-rule:evenoddclip-rule:evenodd}</style><g><path class="st0" d="M89.62,13.96v7.73h12.19h0.01v0.02c3.85,0.01,7.34,1.57,9.86,4.1c2.5,2.51,4.06,5.98,4.07,9.82h0.02v0.02 v73.27v0.01h-0.02c-0.01,3.84-1.57,7.33-4.1,9.86c-2.51,2.5-5.98,4.06-9.82,4.07v0.02h-0.02h-61.7H40.1v-0.02 c-3.84-0.01-7.34-1.57-9.86-4.1c-2.5-2.51-4.06-5.98-4.07-9.82h-0.02v-0.02V92.51H13.96h-0.01v-0.02c-3.84-0.01-7.34-1.57-9.86-4.1 c-2.5-2.51-4.06-5.98-4.07-9.82H0v-0.02V13.96v-0.01h0.02c0.01-3.85,1.58-7.34,4.1-9.86c2.51-2.5,5.98-4.06,9.82-4.07V0h0.02h61.7 h0.01v0.02c3.85,0.01,7.34,1.57,9.86,4.1c2.5,2.51,4.06,5.98,4.07,9.82h0.02V13.96L89.62,13.96z M79.04,21.69v-7.73v-0.02h0.02 c0-0.91-0.39-1.75-1.01-2.37c-0.61-0.61-1.46-1-2.37-1v0.02h-0.01h-61.7h-0.02v-0.02c-0.91,0-1.75,0.39-2.37,1.01 c-0.61,0.61-1,1.46-1,2.37h0.02v0.01v64.59v0.02h-0.02c0,0.91,0.39,1.75,1.01,2.37c0.61,0.61,1.46,1,2.37,1v-0.02h0.01h12.19V35.65 v-0.01h0.02c0.01-3.85,1.58-7.34,4.1-9.86c2.51-2.5,5.98-4.06,9.82-4.07v-0.02h0.02H79.04L79.04,21.69z M105.18,108.92V35.65v-0.02 h0.02c0-0.91-0.39-1.75-1.01-2.37c-0.61-0.61-1.46-1-2.37-1v0.02h-0.01h-61.7h-0.02v-0.02c-0.91,0-1.75,0.39-2.37,1.01 c-0.61,0.61-1,1.46-1,2.37h0.02v0.01v73.27v0.02h-0.02c0,0.91,0.39,1.75,1.01,2.37c0.61,0.61,1.46,1,2.37,1v-0.02h0.01h61.7h0.02 v0.02c0.91,0,1.75-0.39,2.37-1.01c0.61-0.61,1-1.46,1-2.37h-0.02V108.92L105.18,108.92z"/>
+                                        </g>
+                                        </svg>
+                                    </div>
                                </div>
                                <p class='copy-message invisible' id='${hexValue}'> Copied </p>
                             </div>
@@ -105,35 +115,30 @@ function hideDropDown(){
 }
 
 function copyToClipboard(e){
-    if(e.target.className === 'clipboard'){
-        const currentHexCode = event.target.getAttribute("data-NewColorHex")
-        if (window.clipboardData && window.clipboardData.setData) {
-        return window.clipboardData.setData(currentHexCode, text);
+    if (e.target.parentElement.className === 'clipboard') {
+        const currentHexCode = e.target.parentElement.getAttribute("data-NewColorHex")
+        const textArea = document.createElement("textarea")
+        textArea.value = currentHexCode
 
-    }
-    else if (document.queryCommandSupported && document.queryCommandSupported("copy")) {
-        var textarea = document.createElement("textarea");
-        textarea.textContent = currentHexCode;
-        textarea.style.position = "fixed"; 
-        document.body.appendChild(textarea);
-        textarea.select();
-        document.getElementById(currentHexCode).classList.remove('invisible')
-        setTimeout(function(){
-            document.getElementById(currentHexCode).classList.add('invisible')
-        }, "2000")
+        document.body.appendChild(textArea)
+
+        const range = document.createRange()
+        range.selectNode(textArea)
+        window.getSelection().removeAllRanges()
+        window.getSelection().addRange(range)
         try {
-            return document.execCommand("copy");
-        }
-        catch (ex) {
-            console.warn("Copy to clipboard failed.", ex);
-            return prompt("Copy to clipboard: Ctrl+C, Enter", currentHexCode);
-        }
-        finally {
-            document.body.removeChild(textarea);
+            document.execCommand('copy')
+            document.getElementById(currentHexCode).classList.remove('invisible')
+            setTimeout(function () {
+                document.getElementById(currentHexCode).classList.add('invisible')
+            }, 2000)
+        } catch (err) {
+            console.error('Unable to copy to clipboard', err)
+        } finally {
+            document.body.removeChild(textArea)
         }
     }
 }
-    }
 
 getRandomColor()
 
@@ -146,6 +151,16 @@ selector.addEventListener('click', function(){
     renderMenu()
 })
 
+dropDown.addEventListener('click', function(e) {
+    const target = e.target
+    
+    if (e.target.className === 'clipboard') {
+        const currentHexCode = e.target.getAttribute("data-NewColorHex")
+        const id = target.getAttribute('data-id')
+        handleSelectorClick(id)
+    }
+})
+
 getRandomColorSchemeBtn.addEventListener('click', function(){
     getRandomColor()
     getNewValues()
@@ -154,10 +169,6 @@ getRandomColorSchemeBtn.addEventListener('click', function(){
 
 colorPicker.addEventListener('input', function(){
     getNewValues()
-})
-
-document.getElementById('main-div').addEventListener('click', function(){
-    hideDropDown()
 })
 
 countUpArrow.addEventListener('click', function(){
@@ -176,6 +187,10 @@ countDownArrow.addEventListener('click', function(){
     }
 })
 
-document.getElementById('main-div').addEventListener('click', function(e){
-      copyToClipboard(e)
+mainDiv.addEventListener('click', function(e){
+    copyToClipboard(e)
+})
+
+mainDiv.addEventListener('click', function(){
+    hideDropDown()
 })

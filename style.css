@@ -117,6 +117,11 @@ button{
     background: var(--white, #FFF);
     font-size: 12px;
     font-family: 'Inter', sans-serif;
+    cursor: pointer;
+}
+
+svg{
+    cursor: pointer;
 }
 
 #drop-down{
@@ -235,9 +240,9 @@ button{
     }
     
     .copy-message{
-    bottom: 0%;
+    bottom: 20%;
     left: -40%;
     display: inline;
     position: absolute;
-}
+    }
 }
