@@ -60,8 +60,8 @@ function fetchColorPalette(selectedColor, selectedPaletteMode, colorCount){
         .then(colorDataArr => {
             let colorPaletteHtml = ``
              colorDataArr.colors.forEach(color => {
-                 hexValue = color.hex.value
-                 colorName = color.name.value
+                 const hexValue = color.hex.value
+                 const colorName = color.name.value
                  colorPaletteHtml += `
                     <div class='color-container' style='background-color:${hexValue}'> 
                         <div class='color-code'>
