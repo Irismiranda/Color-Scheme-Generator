@@ -68,7 +68,7 @@ function fetchColorPalette(selectedColor, selectedPaletteMode, colorCount){
                             <div class='color-data-container'>
                                 <p> ${hexValue} </p>
                                <div class='flex center'> 
-                                    <p class='bold'> ${colorName} </p> 
+                                    <p  class='bold'> ${colorName} </p> 
                                     <img src='../public/copy-icon.svg' class='clipboard' data-NewColorHex="${hexValue}">
                                </div>
                                <p class='copy-message invisible' id='${hexValue}'> Copied </p>
