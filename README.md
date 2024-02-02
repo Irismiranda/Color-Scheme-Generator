@@ -4,7 +4,7 @@ Color Scheme Generator is a simple web application developed as part of a Scrimb
 
 ## Overview
 
-The Color Scheme Generator is a straightforward application built using HTML, CSS, and JavaScript. It leverages the [theColorAPI](https://www.thecolorapi.com/) to fetch color schemes dynamically. The app enables users to explore different color combinations, copy hex codes to the clipboard, and generate random color schemes.
+Color Scheme Generator is a straightforward application built using HTML, CSS, and JavaScript. It leverages the [theColorAPI](https://www.thecolorapi.com/) to fetch color schemes dynamically. The app enables users to explore different color combinations, copy hex codes to the clipboard, and generate random color schemes.
 
 ## Features
 
