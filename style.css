@@ -191,7 +191,8 @@ svg{
 }
 
 .clipboard{
-    width: 10px;
+    width: 12px;
+    padding: 12px 0px;
 }
 
 .copy-message{
