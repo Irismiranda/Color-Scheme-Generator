@@ -73,6 +73,7 @@ function fetchColorPalette(selectedColor, selectedPaletteMode, colorCount){
                  const colorName = color.name.value
                  colorPaletteHtml += `
                     <div class='color-container' style='background-color:${hexValue}'> 
+                        <p class='copy-message invisible' id='${hexValue}'> Copied </p>
                         <div class='color-code'>
                             <div class='color-data-container'>
                                 <p> ${hexValue} </p>
@@ -85,7 +86,6 @@ function fetchColorPalette(selectedColor, selectedPaletteMode, colorCount){
                                         </svg>
                                     </div>
                                </div>
-                               <p class='copy-message invisible' id='${hexValue}'> Copied </p>
                             </div>
                         </div>
                     </div>
