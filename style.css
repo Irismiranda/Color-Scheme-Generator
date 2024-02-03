@@ -240,9 +240,9 @@ svg{
     }
     
     .copy-message{
-    bottom: 20%;
-    left: -40%;
-    display: inline;
-    position: absolute;
+        bottom: 0%;
+        right: 92%;
+        position: absolute;
+        transform: translate(-50%,-50%);
     }
 }
