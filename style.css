@@ -193,6 +193,7 @@ svg{
 .clipboard{
     width: 12px;
     padding: 12px 0px;
+    cursor: pointer;
 }
 
 .copy-message{
