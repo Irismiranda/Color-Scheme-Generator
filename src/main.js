@@ -115,7 +115,7 @@ function hideDropDown(){
 }
 
 function copyToClipboard(e){
-    if ((e.target.parentElement.className || e.target.className) === 'clipboard') {
+    if (e.target.parentElement.className === 'clipboard' || e.target.className === 'clipboard') {
         const currentHexCode = e.target.parentElement.getAttribute("data-NewColorHex")
         const textArea = document.createElement("textarea")
         textArea.value = currentHexCode
