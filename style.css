@@ -199,6 +199,8 @@ svg{
     padding: 5px 15px;
     color: white;
     font-size: 12px;
+    margin: 20px;
+    text-align: center;
     }
 
 
@@ -217,6 +219,7 @@ svg{
         flex-direction: row;
         height: auto;
         flex-grow: 1;
+        align-items: center;
     }
     
     #main-div{
